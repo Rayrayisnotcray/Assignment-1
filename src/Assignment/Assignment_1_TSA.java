@@ -17,15 +17,14 @@ public class Assignment_1_TSA {
 		String fileName = "data\\regional-global-weekly-2020-01-17--2020-01-24.csv";
 		
 		try(BufferedReader br = new BufferedReader(new FileReader(new File(fileName)))){
-			System.out.println(br.readLine()); //ignores first line 
-			System.out.println(br.readLine()); //ignores second line
+			br.readLine(); 		//ignores first line 
+			br.readLine(); 		//ignores second line
 			String data = "";
 			while((data = br.readLine()) != null) {		
 				String [] Node = data.split(",");
 				String temp = Node[2];
 				
-				System.out.println(temp);
-				
+				//gets rid of extra quotation marks on artist is any are present
 				if(Character.isLetter(temp.charAt(0)) == false)
 					temp = temp.substring(1, temp.length()-1);	
 							
@@ -50,12 +49,15 @@ public class Assignment_1_TSA {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//displays list of artist and how many times they appear
 		System.out.println(print(myList, artistNum));
+		
 		
 		for(int i = 0; i < artistNum; i++) {
 			TSA.addArtist(myList[i][0]);
 		}
 		
+		//displays list of artist in ascending order 
 		TSA.displayList();
 	}
 	
